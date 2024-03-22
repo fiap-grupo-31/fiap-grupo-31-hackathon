@@ -25,10 +25,40 @@ Este repositório contém o projeto desenvolvido para o hackathon. Utilizando o 
 * 1 Lambda: Processar relatório e enivar por e-mail e armazenar em s3
 
 
+<a id="ancora0"></a>
+# Sumário
+>
+
+- [MVP Fase 1](#ancora1)
+    - [Desenho da Solução MVP](#ancora2)
+    - [Contextos Delimitados (Bounded Contexts)](#ancora3)
+    - [Principais Componentes e Design](#ancora4)
+    - [Modelagem databse (base)](#ancora5)
+    - [Documentação das API's](#ancora6)
+    - [Diagrama de sequência das API's](#ancora7)
+- [MVP ( FASE 2 )](#ancora8)
+    - [Desenho da Solução MVP (FASE 2)](#ancora9)
+    - [Contextos Delimitados (Bounded Contexts)](#ancora10)
+    - [### Principais Componentes e Design](#ancora11)
+- [Rpid (LGPD)](#ancora12)
+- [Instalação](#ancora13)
+- [Execução de Testes unitários](#ancora14)
+- [Provisonamento em Cloud AWS](#ancora15)
+- [AWS configuração](#ancora16)
+- [Pipeline](#ancora17)
+- [Execução do projeto](#ancora18)
+
+<a id="ancora1"></a>
 # MVP ( FASE 1 )
+>
+
+
 O MVP do sistema de ponto eletrônico interno para a Hackaton Company SA, utiliza os serviços AWS escolhidos, que foi fundamental garantir que o design da solução seja robusto, escalável, e segura, atendendo tanto aos requisitos funcionais quanto aos não funcionais especificados. A seguir, descrevo o desenho da solução, justificando as escolhas técnicas e abordando os requisitos solicitados:
 
+<a id="ancora2"></a>
 ## Desenho da Solução MVP
+>
+
 ![alt text](doc/images/ArquiteturaFase1.svg)
 
 - #### Autenticação de Usuário com Amazon Cognito
@@ -65,7 +95,13 @@ O MVP do sistema de ponto eletrônico interno para a Hackaton Company SA, utiliz
 
     **Manutenibilidade e Resiliência**: A arquitetura serverless e os serviços gerenciados reduzem a complexidade de manutenção e garantem uma rápida
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora3"></a>
 ## Contextos Delimitados (Bounded Contexts)
+>
+
+
 
 - #### Gestão de Identidade e Acesso
     Entidades: Usuário
@@ -90,12 +126,22 @@ O MVP do sistema de ponto eletrônico interno para a Hackaton Company SA, utiliz
     
     Integração: AWS Lambda para geração de relatórios, Amazon SQS para enfileiramento de tarefas assíncronas, Amazon SES para envio de relatórios por e-mail, Amazon DynamoDB para armazenamento de dados, Amazon S3 para armazenamento de relatórios gerados com ciclo de vida.
 
+[Voltar ao topo](#ancora0)
+<a id="ancora4"></a>
 ## Principais Componentes e Design
+>
+
 - **Autenticação** e Segurança: Utilizando Amazon Cognito, garantimos um sistema seguro de autenticação e gestão de identidades, alinhado com as melhores práticas de segurança.
 - **Registro e Gestão de Ponto**: A combinação de AWS Lambda e Amazon DynamoDB permite um registro eficiente e seguro dos pontos, além de oferecer a escalabilidade necessária para o grande volume de transações.
 - **Visualização e Geração de Relatórios**: AWS Lambda e Amazon SES são usados para processar e enviar relatórios, assegurando que os dados sejam acessíveis e comunicados de forma eficiente.
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora5"></a>
 ## Modelagem databse (base)
+>
+
+
 
 ```mermaid
 erDiagram
@@ -126,7 +172,11 @@ erDiagram
 
 ```
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora6"></a>
 ## Documentação das API's
+>
 
 A documentação das APIs foi elaborada utilizando a versão 1 do Postman Collection, e o arquivo para importação está disponível a seguir.
 
@@ -139,8 +189,12 @@ https://documenter.getpostman.com/view/9751404/2sA358em6j
 
 ![Online](doc/images/DocumentacaoOnline.png)
 
+[Voltar ao topo](#ancora0)
 
+<a id="ancora7"></a>
 ## Diagrama de sequência das API's
+>
+
 
 ### Autenticação (Login)
 ```mermaid
@@ -298,10 +352,21 @@ alt Insucesso
 end
 ```
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora8"></a>
 # MVP ( FASE 2 )
+>
+
 Para a fase 2 do projeto, onde buscamos incorporar funcionalidades adicionais como a edição de registros, envio de notificações, e um portal de administração, utilizaremos os serviços da AWS já mencionados e introduziremos novos componentes para atender aos requisitos. A adição do AWS EventBridge, Amazon S3, Amazon CloudFront e Amazon Simple Notification Service (SNS) fortalecerá a infraestrutura, garantindo uma solução abrangente, escalável e de alta performance. Aqui está como essas adições se encaixam no design da solução:
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora9"></a>
 ### Desenho da Solução MVP (FASE 2)
+>
+
+
 ![alt text](doc/images/ArquiteturaFase2.svg)
 
 - #### Agendamento e Envio de Notificações com AWS EventBridge e Amazon SNS
@@ -322,8 +387,11 @@ Para a fase 2 do projeto, onde buscamos incorporar funcionalidades adicionais co
 - #### Conclusão
     A expansão para a fase 2 introduzirá melhorias significativas na funcionalidade, usabilidade e eficiência do sistema de ponto eletrônico, alavancando a robusta gama de serviços da AWS. A inclusão de EventBridge e SNS aprimora a capacidade do sistema de se comunicar proativamente com os usuários, enquanto S3 e CloudFront proporcionam uma solução eficiente e segura para o portal de administração. Mantendo a arquitetura baseada em Lambda, DynamoDB e API Gateway para relatórios e dashboards, o sistema permanece ágil, escalável e capaz de atender às crescentes demandas da empresa. Este design cuidadosamente planejado garante que o sistema não apenas atenda aos requisitos funcionais e não funcionais estabelecidos, mas também ofereça uma plataforma para inovação contínua e melhorias no futuro.
 
+[Voltar ao topo](#ancora0)
 
+<a id="ancora10"></a>
 ### Contextos Delimitados (Bounded Contexts)
+>
 
 -  #### Gestão de Identidade e Acesso
     Entidades: Usuário
@@ -364,16 +432,24 @@ Para a fase 2 do projeto, onde buscamos incorporar funcionalidades adicionais co
 
     Integração: AWS EventBridge para agendamento de tarefas, Amazon SNS para envio de notificações
 
+[Voltar ao topo](#ancora0)
 
+<a id="ancora11"></a>
 ### Principais Componentes e Design
+>
+
 - **Autenticação** e Segurança: Utilizando Amazon Cognito, garantimos um sistema seguro de autenticação e gestão de identidades, alinhado com as melhores práticas de segurança.
 - **Registro e Gestão de Ponto**: A combinação de AWS Lambda e Amazon DynamoDB permite um registro eficiente e seguro dos pontos, além de oferecer a escalabilidade necessária para o grande volume de transações.
 - **Visualização e Geração de Relatórios**: AWS Lambda e Amazon SES são usados para processar e enviar relatórios, assegurando que os dados sejam acessíveis e comunicados de forma eficiente.
 - **Administração e Distribuição de Conteúdo**: Amazon S3 e CloudFront fornecem uma solução robusta para hospedagem e entrega rápida do portal de administração.
 - **Comunicação e Notificações**: AWS EventBridge e Amazon SNS oferecem um meio eficaz de agendar e enviar notificações, mantendo os usuários informados e engajados.
 
+[Voltar ao topo](#ancora0)
 
+<a id="ancora12"></a>
 ## Rpid (LGPD)
+>
+
 
 RPID essencial para garantir que a organização esteja em conformidade com a LGPD, protegendo os direitos dos indivíduos e promovendo uma cultura de proteção de dados.
 
@@ -381,7 +457,12 @@ Abaixo documento
 
 [Download](doc/RpidHakaton.pdf)
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora13"></a>
 ## Instalação
+>
+
 Execute o comando abaixo para instalação dos pacotes necessários para execução do projeto
 
 ```
@@ -393,13 +474,20 @@ Para versão em produção recomendas-se utilizar o parametro --production
 npm install --production
 ```
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora14"></a>
 ## Execução de Testes unitários
+>
+
 
 O comando irá realizar através do JEST os testes unitários com coverage.
 
 ```
 npm run test
 ```
+
+[Voltar ao topo](#ancora0)
 
 #### Resultado dos testes unitários (JEST)
 ![Testes](doc/images/coverate.png)
@@ -438,13 +526,21 @@ custom:
     endpointFile: "${self:service}/localstack/endpoints.yml"
 
 ```
+[Voltar ao topo](#ancora0)
 
-
+<a id="ancora15"></a>
 ## Provisonamento em Cloud AWS
+>
+
 
 Esta execução esta fora do nível gratuito da AWS, importante avaliar antes de executar
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora16"></a>
 ## AWS configuração
+>
+
 
 Configure abaixo no secrets do github.
 
@@ -455,7 +551,11 @@ SONAR_HOST_URL = "xxxxxxxxxxxxxxxxx"
 SONAR_TOKEN    = "xxxxxxxxxxxxxxxxx"
 ```
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora17"></a>
 ## Pipeline
+>
 
 Com os requisitos já identificados, as variáveis configuradas no secrets do github.
 
@@ -464,6 +564,7 @@ Efetue o Pull Request com a branch master para executar o processo de
 - **Teste**: Será executado a bateria de teste e se aprovado será direcionado ao próximo step.
 - **Sonarqube**: Será executado a bateria de teste no sonarqube (sonarcloud) e se aprovado será direcionado ao próximo step.
 - **Deploy**: O terraform irá executar o serverless deploy para provisionar a infraestrutura e deploy em produção.
+
 
 ### Diagram de CI/CD ( Branch Develop )
 ```mermaid
@@ -515,6 +616,13 @@ Actions Workflow->Aprovado: INSUCESSO - ENCERRA
 end
 ```
 
+[Voltar ao topo](#ancora0)
+
+<a id="ancora18"></a>
 ### Execução do projeto
+>
+
 
 Ao efetuar um push no repositório develop com sucesso, é necessário efetuar um pull request na branch master para que a execução do pipeline do workflow seja executado
+
+[Voltar ao topo](#ancora0)

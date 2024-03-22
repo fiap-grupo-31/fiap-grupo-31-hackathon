@@ -627,7 +627,4 @@ end
 
 Ao efetuar um push no repositório develop com sucesso, é necessário efetuar um pull request na branch master para que a execução do pipeline do workflow seja executado
 
-<<<<<<< HEAD
 [Voltar ao topo](#ancora0)
-=======
->>>>>>> 6a3e39ce46f30929fceb446ae58492c1ec5e2fc7

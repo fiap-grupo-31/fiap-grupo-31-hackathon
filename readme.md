@@ -8,7 +8,7 @@
 [![Amazon DynamoDB](https://img.shields.io/badge/Amazon-DynamoDB-orange.svg)](https://aws.amazon.com/dynamodb/)
 
 
-# Hakaton (GRUPO 31) - Framework ( Infraestrutura e Apis )
+# Hackathon (GRUPO 31) - Framework ( Infraestrutura e Apis )
 
 Este repositório contém o projeto desenvolvido para o hackathon. Utilizando o Serverless Framework, o processo de provisionamento da infraestrutura na nuvem é automatizado através deste framework com ativação requisitada via Terraform. Abaixo estão os serviços de nuvem que são provisionados.
 
@@ -182,8 +182,8 @@ erDiagram
 
 A documentação das APIs foi elaborada utilizando a versão 1 do Postman Collection, e o arquivo para importação está disponível a seguir.
 
-[Collection Api Postman](doc/HAKATON.postman_collection.json)
-[Documentação em PDF](doc/HakatonCollection.pdf)
+[Collection Api Postman](doc/Hackathon.postman_collection.json)
+[Documentação em PDF](doc/HackathonCollection.pdf)
 
 Para acessar uma visualização pública, clique no link abaixo.
 
@@ -457,7 +457,7 @@ RPID essencial para garantir que a organização esteja em conformidade com a LG
 
 Abaixo documento
 
-[Download](doc/RpidHakaton.pdf)
+[Download](doc/RpidHackathon.pdf)
 
 [Voltar ao topo](#ancora0)
 

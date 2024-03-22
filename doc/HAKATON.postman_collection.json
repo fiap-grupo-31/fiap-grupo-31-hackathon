@@ -1,0 +1,1216 @@
+{
+	"info": {
+		"_postman_id": "f5ca8e70-303e-41db-9c4c-359272754b02",
+		"name": "HAKATON",
+		"description": "API v1 for consumption by Hackaton Company SA | Electronic Point  \nRequirements  \nTo use our API, you must be familiar with the basic terminology used in developing REST web services. It is possible to develop integration with practically all programming languages available on the market.  \nTests  \nYou can test the API using forms in the interactive documentation itself.  \nWe also recommend using Postman, a free Chrome plugin that makes it easy to inspect requests and responses.  \nFormat  \nThe API is a web service compatible with REST, that is, in addition to the traditional POST and GET methods, you will also see operations here that use the PUT and DELETE methods. Requests are returned in JSON format only, always accompanied by the appropriate HTTP code.  \nSecurity and authentication  \nAuthentication to the API is carried out using a valid Bearer Token generated through a request to send a username and password\\*.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9751404"
+	},
+	"item": [
+		{
+			"name": "Overview",
+			"item": [],
+			"description": "To use the API, you must make Rest API calls to use the services. To use the API, the user must make the authentication request (User/Login) and send the generated token to bearerToken. such as timekeeping and reports.",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Rate Limits",
+			"item": [],
+			"description": "The API follows commercial use case rate limits. Each customer account has a call count rate limit and each call made by its channel instance.",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"eliza@andersonalves.com.br\",\n    \"password\": \"Teste@123456\",\n    \"name\": \"Eliza M Alves\",\n    \"matricula\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/signup",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						},
+						"description": "Returns the result of creating a user.\n\n# **Request Parameters**\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| email | string (255) | email user |\n| password | string (24) |  |\n\n# **Response Parameters**\n\nthe return is an array of objects with the response parameters below\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| message | string (2024) |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"eliza@andersonalves.com.br\",\n    \"password\": \"Teste@123456\",\n    \"name\": \"Eliza M Alves\",\n    \"matricula\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Mar 2024 00:18:45 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "3906da47-3962-4453-89cf-96b094b0ef77"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "VAUv2EW1IAMEq_w="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fcce65-625f324432a3d81544ca3b98;Parent=0c488ae209c06abf;Sampled=0;lineage=a57ea42d:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 8cdd8206d820bb2d6bebf123c9f1ed06.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU3-C2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "4npD28Yk183Sl__ZgHn0Cpzdz2ibI0QwknU3GnHvR9qyeUV37TdnLg=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuário criado com sucesso\"\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"eliza@andersonalves.com.br\",\n    \"password\": \"Teste@123456\",\n    \"name\": \"Eliza M Alves\",\n    \"matricula\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 22 Mar 2024 00:18:09 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "1f2e3a0c-9060-4818-9eef-a13613a84f3a"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "VAUp0FZ9IAMEghg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fcce3e-368cfd601db328bc59e10ab5;Parent=20b697bdab63b856;Sampled=0;lineage=a57ea42d:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 8cdd8206d820bb2d6bebf123c9f1ed06.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU3-C2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "aFu4GcR-e7wQbZJarOKAMBw3p2ApdLRpB2LDraF47qp6zKBNcvJ3EQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User account already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"anderson@andersonalves.com.br\",\n    \"password\": \"Teste@123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/user/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "Returns the access_token and refresh_token, the access_token must be sent in bearerToken in other Report and Point Report requests.\n\n# **Request Parameters**\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| email | string (255) | email user |\n| password | string (24) |  |\n\n# **Response Parameters**\n\nthe return is an array of objects with the response parameters below\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| access_token | string (2024) |  |\n| refresh_token | string (2024) |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"anderson@andersonalves.com.br\",\n    \"password\": \"Teste@123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2900"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:41:36 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "7bad4532-0480-40f1-902c-95d31a693fb0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7KG0EwmIAMECCg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabd5e-2eaa761a1b412353192f1b42;Parent=2a03d4fc6a38601c;Sampled=0;lineage=af2d4c10:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "K9nNquthfjXJhjU55V2n7CM-joC2inTpbG4zGvlteUhmMChq4BVEeQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJraWQiOiJ4U21RcFhoSEVcL2pHbjBcL2tpenJRY3JaeXFjdldtZ0Y3UTVPMUNXTTZESXM9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJlMzVjOGQ3ZC1hNTAzLTRjM2ItOWQ4MC0zZTMxOWY2YTg0ZTYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfb2RSOHlwUmtWIiwiY29nbml0bzp1c2VybmFtZSI6ImFuZGVyc29uQGFuZGVyc29uYWx2ZXMuY29tLmJyIiwib3JpZ2luX2p0aSI6IjdmNmRmNDA4LTUxZmEtNDc1MS05YmQ5LTU3YTkxMTBiOGVkNyIsImF1ZCI6ImUxMnMzYnFxaWF0NzVmcHNiZ2szNnJiMnUiLCJldmVudF9pZCI6IjlkNmFiMzU1LWEyYzItNGU5NS04NGNlLWM0NWEzNGU2YjdkZCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzEwOTMxMjk2LCJleHAiOjE3MTA5NDkyOTYsImlhdCI6MTcxMDkzMTI5NiwianRpIjoiNGYxNTcyMTYtYzQ4ZS00ZGQzLTlkNWYtN2MwNzNiMjNkYTA3IiwiZW1haWwiOiJhbmRlcnNvbkBhbmRlcnNvbmFsdmVzLmNvbS5iciJ9.Q1sOEXD-QaJkzx6YdP2MQ7_OuIsol-FTWxkejg0Wke4azF5OeDZfsY_vO6OND4H6NKv0AjXWvzo4HR7uy4qEwJAy6hcMgAiLQIh9x3WWPxDvEQPviHIbp0NSrdm9yjG38YOcp7aoMUrMHNOAJ9Dfv93kFakmt6-KKnWOebtMT6kKpaa9m0tTIYnwVrQtr_3Ei6CPZYarG2VitOvVe9OE6qHMydIgNEzKd_0pDJZvl0375-nXS4hW9bCzBB-fz82wMkbIPU1p3DDDkQTlNoVkWlb-mqDSN-M8C1zsilRVPeBVQUzE3r81cM8dbhUQ6zNnI94ru27SZMu5_Yj2EW89Ww\",\n    \"refresh_token\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.fkEYflLjJFqTurCRj5wpTUel0sazksxL8uEpkVaqeZ09tQkEqNYZkHtQjsPUCgWnMo-SLW4ThIUphxG4EbH3sX02NsGKlGIAiHvc--bmUUOsOuNVm6ovUDwz6_pazG0bCbbtn2n5J_ofJLMQQjGqtDnqQ6egUJ1Cu3TY2KU6T4XBF1cbuy-JB6w2MhtlrAUQStkKdFt8UUrMcSgwea6D-52pt5b6IJkq99iz1UN21if7txBZiK0xWbgUgzLLU8yV326UYT7AF56xIM_2Kbs42YIQz3njoDF2dnst2ApeNmo549hbzUxH59fVGdmRoJfQrqxJJLfXASUz7ogUOqzBQg.g20L4RA2nzzXthGf.NH_jPX3MGYnoz_M4JUfPgT4l8zTRxFnSz2GnkzPK6N5W0ejEvUHAOcuuSfu0bnJ187-mLz7TRRQDoqwtE7qwHrS8kJQXAgs95OSSaOssRT3F2yFV8wZTPRj_qyW3gd7CRt0BiLox9u10myA_OVMV9aJlZ761WoNDdycrxTx5z--tvROMY8TqIr_JtXtTtisQI5U-Tu7Ol9rUM7FqydgtaiCZz3kcdcfq0iz2vnFpzGVXAUFVVE0oQGehItZ7II1w7_vdYsRJgf_jSE2cjxJmkE9JQ-D29IZNTDZPh5RN5Ed0EZ7W7LPWYrEKQZmYI0PYgkCmkmZ8o7TKTih_ugSBWX06u8Mx3Pmuhsx2y5u5NzTUWQwt8HZx_C24micx9Haqya3-0hUPC9v-H9NHy9Xaiil81QVa4H7IEXELaWOQhQMbRstH5R7nEYll10Qfahw69ELiErFigAAOyNa6eOeUobqMQLt3lRah3V8peedbiGWR4bcFtNTH2Lni0fit6Y3Dl4OcV61wSA0bKcbpS6eG6R_lAQwsgUH9xo3rPGy-Y6Hu9rrmzJn_K7E3UchmHOrkSnpSq3GQkjxV_gknGPlGekZWcA_PXI1ymAMi2bmCqOcYZLsRjTpZQkRv3ZE27D9kRh1_HgY-5P7JLzoILlIODj9ogRCsYTEXj83t6FKTGqaK-RTSOaeQxH40x7MeZki4M6J07NOHNVfasA9Lizn24C57SAuR8euZDY9aOJtJfhZPpmgCe5V76lpJqQKOqvC3OpzbGRU3eb6U3szlnEqjPKZngJV7pi1yabs3nvTTCEbu0WHqOZFCPRbbcXYq5esFLl3cdEatO1lJIyOacueT3vlWp3UCcsflxOw05Ni_OjLSaANff_NiBhNX17dSnVcAN57a17bsZVSuwEUqs0JBM2_Bdb8m0SnF2HIKWibf0XaFDleAa36Fq-UJMSAKqSPGYcQXrgdlCypDRiwPSpXQyJrNKDU9NLsakdlYnEzm-prX1ttaJXODBExlwsMjJN4Hry-oPM0j8YMXsgaUf2bc0npSKPd21m-p8MLkms-_gxcn8duU3wEtrIXGWqmUJ-gp6izYmaY2GzqsJMmvyaawDtj26M9Ch6x3W9kGBmb5_3tPAU3vPwQ-OhcsDq9EI916mwAQLhxPGeJRWgr69T3459c0AJrbN0Ic2fKhq0oSCHPFmNV2YbDwmQGQqpHnnJh3CrH_pmcZq5Sw0cde551VRoUUel8Y6OCTnSyQDBdDdiaCA8ZfB5j9dybMmz8JcV-JtaF0Ozx2n1iiglYQyvkZ38xW8kRmPJQiFfj3GzMTCiKTrg._Vz-S13pDIpWz6agFV7EQQ\"\n}"
+						},
+						{
+							"name": "AccessDenied",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"anderson@andersonalves.com.br\",\n    \"password\": \"Teste@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:42:47 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "d7ae7d26-b5bb-4887-b557-f7e3d859a579"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7KSOHdRIAMENJA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabda7-45097e7e7c7ef1f84c3cd113;Parent=30ff88e4ef488682;Sampled=0;lineage=af2d4c10:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "vva9temEym_Sc_m2HDFSCjm4LAQUeja9y0MIoOLgRXShlu5c0BS9kQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Incorrect username or password.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The APIs aimed at the user group offer functionality for creating new users in the time recording system, in addition to allowing these users to log in."
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "RequestReport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"espelho\",\n    \"competence\": \"2024-03\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/report/request",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"report",
+								"request"
+							]
+						},
+						"description": "Makes the request to generate the point mirror forwarding via email.\n\n# **Request Parameters**\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| type | string(60) | fixed espelho |\n| competence | string (7) | sample 2024-03 |\n\n# **Response Parameters**\n\nreturns an object\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| id | string (36) |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"espelho\",\n    \"competence\": \"2024-03\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/report/request",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"report",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:50:20 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "97310130-d36b-4ff5-8941-61ebb155a90c"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7LYoHNMIAMEspQ="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabf6a-49f5a3ea3984d9595da9147c;Parent=7c5fa9047f23c67d;Sampled=0;lineage=99f75320:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "4U1AbSt4j94WrvoeZds53F5B2XeBcf0kZLAu_KkdzHrdn9-Nn3_JZQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"dda27bc3-f7a6-4211-ba14-868d2615aac0\"\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"espelho\",\n    \"competence\": \"2024-03\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/report/request",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"report",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:50:20 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "97310130-d36b-4ff5-8941-61ebb155a90c"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7LYoHNMIAMEspQ="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabf6a-49f5a3ea3984d9595da9147c;Parent=7c5fa9047f23c67d;Sampled=0;lineage=99f75320:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "4U1AbSt4j94WrvoeZds53F5B2XeBcf0kZLAu_KkdzHrdn9-Nn3_JZQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Falha ao solicitar relatório\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GetRequestReport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/report/e62f4232-8ad2-47b3-9ca3-adf1720df1ce",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"report",
+								"e62f4232-8ad2-47b3-9ca3-adf1720df1ce"
+							]
+						},
+						"description": "Returns how a point mirror report request is being processed.\n\n# **Path Parameters**\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| id | string(36) |  |\n\n# **Response Parameters**\n\nreturns an array of objects\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| report | array |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| userId | string(36) |  |\n| competence | string(7) |  |\n| status | string(30) |  |\n| createdAt | datetime |  |\n| id | string(36) |  |\n| type | string(60) |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/report/dda27bc3-f7a6-4211-ba14-868d2615aac0",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"report",
+										"dda27bc3-f7a6-4211-ba14-868d2615aac0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "168"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 11:04:14 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ee3a2880-0171-455c-91d9-5dbccdb9f77f"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7Na8HqBoAMEUBg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fac2ac-4662ef742437f5866276b73e;Parent=2f75af9b8698400d;Sampled=0;lineage=fbc2dbf8:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 cc532083828b8e3e611a2f0d99536f1c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "-N9ldzjWMgcYq6tIX8fWqpEpKd5EfTrKnbwnN9hY2EJdCvtT-er__g=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"report\": [\n        {\n            \"userId\": \"12312\",\n            \"competence\": \"2024-03\",\n            \"status\": \"pending\",\n            \"createdAt\": \"2024-03-20 07:50:19\",\n            \"id\": \"dda27bc3-f7a6-4211-ba14-868d2615aac0\",\n            \"type\": \"espelho\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/report/dda27bc3-f7a6-4211-ba14-868d2615aac0",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"report",
+										"dda27bc3-f7a6-4211-ba14-868d2615aac0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "168"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 11:04:14 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ee3a2880-0171-455c-91d9-5dbccdb9f77f"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7Na8HqBoAMEUBg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fac2ac-4662ef742437f5866276b73e;Parent=2f75af9b8698400d;Sampled=0;lineage=fbc2dbf8:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 cc532083828b8e3e611a2f0d99536f1c.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "-N9ldzjWMgcYq6tIX8fWqpEpKd5EfTrKnbwnN9hY2EJdCvtT-er__g=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"report\": false\n}"
+						}
+					]
+				}
+			],
+			"description": "The APIs aimed at the reporting group enable the request to generate the point mirror and allow querying the status of the order."
+		},
+		{
+			"name": "Point Record",
+			"item": [
+				{
+					"name": "RecordView",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/point/view?startDate=2024-03-01&endDate=2024-03-19",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"point",
+								"view"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-03-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-03-19"
+								}
+							]
+						},
+						"description": "Returns the mirror of appointments by period.\n\n# **Query Parameters**\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| startDate | string(10) |  |\n| endDate | string(10) |  |\n\n# **Response Parameters**\n\nreturns an array of objects\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| point | object |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| #date | string(10) |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| duration | int |  |\n| durationBreak | int |  |\n| marking | array |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| type | string(40) |  |\n| marking | datetime |  |\n| action | string(40) |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/point/view?startDate=2024-03-01&endDate=2024-03-19",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"point",
+										"view"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-03-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-03-19"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1628"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:43:51 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "4f25d0b4-5372-4485-a555-da358e22bac1"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7Kb3EpaoAMECqw="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabde5-1ddad15b016fb2ac1b07862a;Parent=2fb0a263145797f5;Sampled=0;lineage=7b2285f4:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "otBjMWZsfCHJoDLH8JWk15zoKBaTj8h-C9STUYTbcJlLguD_8Q_rZA=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"point\": {\n        \"2024-03-01\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-02\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-03\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-04\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-05\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-06\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-07\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-08\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-09\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-10\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-11\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-12\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-13\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-14\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-15\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-16\": {\n            \"duration\": 0,\n            \"marking\": []\n        },\n        \"2024-03-17\": {\n            \"duration\": 50506,\n            \"marking\": [\n                {\n                    \"type\": \"entrada\",\n                    \"marking\": \"2024-03-19 06:39:43\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"saída\",\n                    \"marking\": \"2024-03-19 20:41:29\",\n                    \"action\": \"end\"\n                }\n            ]\n        },\n        \"2024-03-18\": {\n            \"duration\": 106,\n            \"marking\": [\n                {\n                    \"type\": \"entrada\",\n                    \"marking\": \"2024-03-19 20:39:43\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"saída\",\n                    \"marking\": \"2024-03-19 20:41:29\",\n                    \"action\": \"end\"\n                }\n            ]\n        },\n        \"2024-03-19\": {\n            \"duration\": 3011,\n            \"marking\": [\n                {\n                    \"type\": \"entrada\",\n                    \"marking\": \"2024-03-19 20:39:43\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"início intervalo\",\n                    \"marking\": \"2024-03-19 20:41:29\",\n                    \"action\": \"end\"\n                },\n                {\n                    \"type\": \"fim intervalo\",\n                    \"marking\": \"2024-03-19 21:16:41\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"início intervalo\",\n                    \"marking\": \"2024-03-19 21:21:31\",\n                    \"action\": \"end\"\n                },\n                {\n                    \"type\": \"fim intervalo\",\n                    \"marking\": \"2024-03-19 21:21:44\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"início intervalo\",\n                    \"marking\": \"2024-03-19 22:05:19\",\n                    \"action\": \"end\"\n                },\n                {\n                    \"type\": \"fim intervalo\",\n                    \"marking\": \"2024-03-19 22:05:29\",\n                    \"action\": \"start\"\n                },\n                {\n                    \"type\": \"saída\",\n                    \"marking\": null,\n                    \"action\": \"end\"\n                }\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "Fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/point/view?startDate=2024-03-01&endDate=2024-03-19",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"point",
+										"view"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-03-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-03-19"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:44:10 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "decb450a-0476-490e-a4ff-e392053bd588"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7KfLFO0oAMEDnA="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabdfa-23d4345115122b184e17c93f;Parent=7bd0d48298577350;Sampled=0;lineage=7b2285f4:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Error from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "ufzeObpb94BkWKt1bQEWhyhg4T_JHX8dHGD3EulUPM3YEH4zUlB8Mw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"pointsGet is not iterable\"\n}"
+						}
+					]
+				},
+				{
+					"name": "RegisterPoint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/point/entry",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"point",
+								"entry"
+							]
+						},
+						"description": "Performs user timekeeping.\n\n# **Response Parameters**\n\nreturns an array of objects\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| point | object |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| Attributes | object |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| date | string(10) |  |\n| points | array |  |\n\n| Name | **Type** | Description |\n| --- | --- | --- |\n| dateHour | datetime |  |"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/point/entry",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"point",
+										"entry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Mar 2024 10:45:13 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "222c4779-7d79-4daa-a683-4229aad50794"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "U7KomFISoAMEmdg="
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-65fabe36-6af4a4ba07b518c41324eefb;Parent=1846b1d6820f8d7f;Sampled=0;lineage=55fd1e34:0"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 4f2895e7de361ba9fde1d5f2b9693c74.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU1-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "TBc6pmjNB8QwsrsKr9Bho0pKZVDH3I_i_ehrVqn1oU4vSOv7OkY_Ww=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"point\": {\n        \"Attributes\": {\n            \"date\": \"2024-03-20\",\n            \"points\": [\n                {\n                    \"dateHour\": \"2024-03-20 07:45:12\"\n                }\n            ],\n            \"userId\": \"12312\"\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The APIs related to the timekeeping group make it possible to make timekeeping appointments and also allow you to view the history of these timekeeping appointments for a specific period."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "/dev/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "{{TOKEN}}",
+			"type": "string"
+		}
+	]
+}

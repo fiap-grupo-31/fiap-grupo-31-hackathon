@@ -518,3 +518,4 @@ end
 ### Execução do projeto
 
 Ao efetuar um push no repositório develop com sucesso, é necessário efetuar um pull request na branch master para que a execução do pipeline do workflow seja executado
+

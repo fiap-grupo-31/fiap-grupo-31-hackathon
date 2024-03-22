@@ -126,6 +126,20 @@ erDiagram
 
 ```
 
+## Documentação das API's
+
+A documentação das APIs foi elaborada utilizando a versão 1 do Postman Collection, e o arquivo para importação está disponível a seguir.
+
+[Collection Api Postman](doc/HAKATON.postman_collection.json)
+[Documentação em PDF](doc/HakatonCollection.pdf)
+
+Para acessar uma visualização pública, clique no link abaixo.
+
+https://documenter.getpostman.com/view/9751404/2sA358em6j
+
+![Online](doc/images/DocumentacaoOnline.png)
+
+
 ## Diagrama de sequência das API's
 
 ### Autenticação (Login)

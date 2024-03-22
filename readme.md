@@ -41,7 +41,7 @@ Este repositório contém o projeto desenvolvido para o hackathon. Utilizando o 
 - [MVP ( FASE 2 )](#ancora8)
     - [Desenho da Solução MVP (FASE 2)](#ancora9)
     - [Contextos Delimitados (Bounded Contexts)](#ancora10)
-    - [### Principais Componentes e Design](#ancora11)
+    - [Principais Componentes e Design](#ancora11)
 - [Rpid (LGPD)](#ancora12)
 - [Instalação](#ancora13)
 - [Execução de Testes unitários](#ancora14)
@@ -49,6 +49,7 @@ Este repositório contém o projeto desenvolvido para o hackathon. Utilizando o 
 - [AWS configuração](#ancora16)
 - [Pipeline](#ancora17)
 - [Execução do projeto](#ancora18)
+- [Cálculo de custos do MVP](#ancora19)
 
 <a id="ancora1"></a>
 # MVP ( FASE 1 )
@@ -626,5 +627,19 @@ end
 
 
 Ao efetuar um push no repositório develop com sucesso, é necessário efetuar um pull request na branch master para que a execução do pipeline do workflow seja executado
+
+[Voltar ao topo](#ancora0)
+
+
+<a id="ancora19"></a>
+### Cálculo de custos do MVP
+>
+
+Para o MVP fase 1 contemplando 100000 usuários efetuando em média 4 marcações de ponto por dia, com pelo menos 1 espelho de ponto gerado por mês.
+
+![Calculo](doc/images/CustosMvp.png)
+
+Estima-se um custo aproximado de 137,94 USD para o MVP quando localizado na AWS (Leste da Virginia)
+
 
 [Voltar ao topo](#ancora0)

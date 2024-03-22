@@ -1,0 +1,90 @@
+name: Aws Deploy ApiGateway && Lambdas
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+
+    - name: Efetua instalação de dependências
+      run: |
+        npm install
+
+    - name: Executa teste da aplicação
+      run: |
+        npm run test
+
+  run-sonarqube:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - run-tests
+
+    steps:
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Efetua instalação de dependências
+      run: |
+        npm install
+    - name: Executa teste da aplicação
+      run: |
+        npm run test --coverage
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      continue-on-error: false
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: Valida Quality Gate status do SonarQube
+      run: |
+        if [ "$(curl -s -u ${{ secrets.SONAR_TOKEN }}: ${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=fiap-techg31_hakaton | jq -r '.projectStatus.status')" != "OK" ]; then
+          echo "Quality Gate failed. Exiting with non-zero status."
+          exit 1
+        fi
+
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - run-tests
+      - run-sonarqube
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+    
+      - name: Configurando a AWS Credentials Action para o GitHub Actions
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v2.0.2
+
+      - name: Instalando Serverless Framework e configurando credenciais
+        run: |
+          npm install -g serverless
+          serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY }} --secret ${{ secrets.AWS_SECRET_KEY }}
+
+      - name: Instalando dependencias
+        run: npm install
+
+      - name: Terraform Init - Iniciando
+        run: terraform init
+
+      - name: Terraform Apply - Aplicando
+        run: terraform apply -auto-approve -var "aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" -var "aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"

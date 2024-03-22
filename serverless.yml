@@ -1,0 +1,298 @@
+service: hakaton
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  stackTags:
+    service: "hakaton"
+    Name: "hakaton"
+  region: "us-east-1"
+  runtime: nodejs18.x
+  stage: dev
+  memorySize: 128
+  timeout: 5
+  environment:
+    user_pool_id: { Ref: UserPool }
+    client_id: { Ref: UserClient }
+    table_user: ${self:service}-users
+    table_points: ${self:service}-points
+    table_reports: ${self:service}-reports
+    sqs_queue_url: { Ref: NewSqsQueue }
+    s3_bucket: ${self:service}-grupo31
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cognito-idp:AdminInitiateAuth
+        - cognito-idp:AdminCreateUser
+        - cognito-idp:AdminSetUserPassword
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - sqs:*
+      Resource:
+        Fn::GetAtt: [NewSqsQueue, Arn]
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+      Resource: "arn:aws:s3:::${self:service}-grupo31/*"
+    - Effect: "Allow"
+      Action:
+        - ses:SendEmail
+      Resource: "*"
+
+functions:
+  getUser:
+    handler: src/interfaces/controllers/user/getUser.handler
+    events:
+      - http:
+          path: api/v1/user/view
+          method: get
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+
+    logRetentionInDays: 3
+  registerPoint:
+    handler: src/interfaces/controllers/point/register.handler
+    events:
+      - http:
+          path: api/v1/point/entry
+          method: post
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  getPoint:
+    handler: src/interfaces/controllers/point/getPoint.handler
+    events:
+      - http:
+          path: api/v1/point/view
+          method: get
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  loginUser:
+    handler: src/interfaces/controllers/user/login.handler
+    events:
+      - http:
+          path: api/v1/user/login
+          method: post
+          cors: true
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  signupUser:
+    handler: src/interfaces/controllers/user/signup.handler
+    events:
+      - http:
+          path: api/v1/user/signup
+          method: post
+          cors: true
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  requestReport:
+    handler: src/interfaces/controllers/report/request.handler
+    events:
+      - http:
+          path: api/v1/report/request
+          method: post
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  getRequestReport:
+    handler: src/interfaces/controllers/report/getRequest.handler
+    events:
+      - http:
+          path: api/v1/report/{id}
+          method: get
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email
+          response:
+            headers:
+              Strict-Transport-Security: "max-age=31536000; includeSubDomains; preload"
+    logRetentionInDays: 3
+  generateReport:
+    handler: src/interfaces/controllers/report/generate.handler
+    timeout: 15
+    memorySize: 256
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - NewSqsQueue
+              - Arn
+    logRetentionInDays: 3
+
+resources:
+  Resources:
+    UserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: serverless-auth-pool
+        Schema:
+          - Name: email
+            Required: true
+            Mutable: true
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 6
+        AutoVerifiedAttributes: ["email"]
+    UserClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: user-pool-ui
+        GenerateSecret: false
+        UserPoolId: { Ref: UserPool }
+        AccessTokenValidity: 5
+        IdTokenValidity: 5
+        ExplicitAuthFlows:
+          - "ADMIN_NO_SRP_AUTH"
+    NewSqsQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}.fifo
+        FifoQueue: true
+    MyS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-grupo31
+    CandidatesDynamoDbTableUsers:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+          - AttributeName: "email"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        GlobalSecondaryIndexes:
+          - IndexName: EmailIndex
+            KeySchema:
+              - AttributeName: "email"
+                KeyType: "HASH"
+            Projection:
+              ProjectionType: "ALL"
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.table_user}
+        BillingMode: PAY_PER_REQUEST
+    CandidatesDynamoDbTablePoints:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:provider.environment.table_points}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: "userId"
+            AttributeType: "S"
+          - AttributeName: "date"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "userId"
+            KeyType: "HASH"
+          - AttributeName: "date"
+            KeyType: "RANGE"
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+    CandidatesDynamoDbTableReports:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:provider.environment.table_reports}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+          - AttributeName: "userId"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+          - AttributeName: "userId"
+            KeyType: "RANGE"
+        GlobalSecondaryIndexes:
+          - IndexName: UserIdIndex
+            KeySchema:
+              - AttributeName: "userId"
+                KeyType: "HASH"
+            Projection:
+              ProjectionType: "ALL"
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+
+custom:
+  apigwBinary:
+    types:
+      'application/json': 'HSTS,XSS'
+
+
+plugins:
+  - serverless-offline
+  - serverless-apigw-binary

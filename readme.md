@@ -16,6 +16,8 @@ Este repositório contém o projeto desenvolvido para o hackathon. Utilizando o 
 * 1 Cognito (Pool)
 * 1 Dynamodb (Tables)
 * 1 S3 (Bucket)
+* 1 Sqs (Queue)
+* 1 SES (Mail)
 * 1 Lambda: Signup (cadastrar usuário no cognito)
 * 1 Lambda: Login (Autenticação de usuário com e-mail e senha)
 * 1 Lambda: Registro de ponto (marcação de ponto)
